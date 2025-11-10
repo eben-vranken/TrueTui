@@ -8,7 +8,7 @@ public class Panel : Component
     public string? Title { get; set; }
     
     // Data
-    public List<Component> childrenElements { get; set; } = new();
+    public List<Component> ChildrenElements { get; set; } = new();
     public BorderChars Border { get; set; }
     
     private Box border;
@@ -17,6 +17,7 @@ public class Panel : Component
     public Panel()
     {
         border = new Box();
+        ChildrenElements = new List<Component>();
     }
     
     public override void Render(ScreenBuffer buffer)
@@ -27,12 +28,23 @@ public class Panel : Component
         border.Height = Height;
         border.Title = Title;
         border.Border = Border;
+        border.ForegroundColor = ForegroundColor;
+        border.BackgroundColor = BackgroundColor;
         
         border.Render(buffer);
 
-        foreach (var child in childrenElements)
+        foreach (var child in ChildrenElements)
         {
+            int originalX = child.X;
+            int originalY = child.Y;
+
+            child.X = X + originalX + 1;
+            child.Y = Y + originalY + 1;
+            
             child.Render(buffer);
+            
+            child.X = originalX;
+            child.Y = originalY;
         }
     }
 }

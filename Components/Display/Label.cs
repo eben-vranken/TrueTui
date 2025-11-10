@@ -7,7 +7,11 @@ public class Label : Component
     public string Text {get; set;}
     
     // Constructors
-    public Label() {}
+    public Label()
+    {
+        ForegroundColor = Console.ForegroundColor;
+        BackgroundColor = Console.BackgroundColor;
+    }
     
     public Label(int x, int y, string text, ConsoleColor? foregroundColor = null, ConsoleColor? backgroundColor = null)
     {

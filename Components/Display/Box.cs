@@ -34,6 +34,11 @@ public class Box : Component
 
     public override void Render(ScreenBuffer buffer)
     {
+        if (Width < 2 || Height < 2)
+        {
+            throw new InvalidOperationException($"Box dimensions too small: Width={Width}, Height={Height}");
+        }
+        
         // Render coordinates
         int y = Y;
         

@@ -1,10 +1,8 @@
 namespace TrueTui.UI_Components;
 
-public class Box
+public class Box : Component
 {
     // Positioning
-    public int X { get; set; }
-    public int Y { get; set; }
     
     public int Width { get; set; }
     public int Height { get; set; }
@@ -12,10 +10,15 @@ public class Box
     // Data
     public string? Title { get; set; }
     public BorderChars Border { get; set; }
-    public ConsoleColor ForegroundColor {get; set;}
-    public ConsoleColor BackgroundColor {get; set;}
     
     // Constructors
+    public Box()
+    {
+        Border = BorderChars.Single;
+        ForegroundColor = Console.ForegroundColor;
+        BackgroundColor = Console.BackgroundColor;
+    }
+    
     public Box(int x, int y, int width, int height, string? title, BorderChars? border = null,  ConsoleColor? foregroundColor = null, ConsoleColor? backgroundColor = null)
     {
         X = x;
@@ -29,7 +32,7 @@ public class Box
     }
 
 
-    public void Render(ScreenBuffer buffer)
+    public override void Render(ScreenBuffer buffer)
     {
         // Render coordinates
         int y = Y;

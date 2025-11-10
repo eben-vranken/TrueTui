@@ -14,22 +14,24 @@ class Program
         ScreenBuffer buffer = new ScreenBuffer();
 
         RenderLoop(buffer);
+        
+        Console.ReadKey();
     }
 
     static void RenderLoop(ScreenBuffer buffer)
     {
         // Define elements here
-        Container header = new Container
+        Panel header = new Panel
         {
+            X = 0,
+            Y = 0,
+            Width = 20,
+            Height = 10,
+            Border = BorderChars.Ascii,
             childrenElements =
             {
-                // Border
-                new Box { X = 0, Y = 0, Width = 65, Height = 15},
-                
                 new Label { X = 2, Y = 2, Text = "Box Title", ForegroundColor = ConsoleColor.Cyan},
                 new Label { X = 2, Y = 3, Text = "Box Content", ForegroundColor = ConsoleColor.DarkCyan},
-                new Label { X = 2, Y = 4, Text = "Box Text", ForegroundColor = ConsoleColor.DarkCyan},
-                new Label { X = 2, Y = 5, Text = "Box Text", ForegroundColor = ConsoleColor.DarkCyan},
             }
         };
 
